@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.matchApp.DAO.MatchDAO;
-import com.example.matchApp.DAO.MatchOddsDAO;
+import com.example.matchApp.DAO.MatchOddDAO;
 import com.example.matchApp.model.Match;
 import com.example.matchApp.model.MatchOdd;
 
@@ -17,7 +17,7 @@ public class MatchServiceImpl implements MatchService {
     @Autowired
     private MatchDAO matchDAO; 
     @Autowired
-    private MatchOddsDAO matchOddsDAO; 
+    private MatchOddDAO matchOddsDAO; 
     
     @Override
     public void saveMatch(Match match) {
@@ -77,5 +77,5 @@ public class MatchServiceImpl implements MatchService {
 			throw new NullPointerException("Cannot find match with id = " + id);
 		}
 		
-	}
+	}		
 }

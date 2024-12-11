@@ -1,11 +1,9 @@
 package com.example.matchApp.model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,8 +36,7 @@ public class Match {
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "sport")
 	private Sport sport;
-	
-	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
 	private List<MatchOdd> odds = new ArrayList<>();
 	
 	public List<MatchOdd> getOdds() {
@@ -89,11 +86,5 @@ public class Match {
 	}
 	public void setSport(Sport sport) {
 		this.sport = sport;
-	}
-	@Override
-	public String toString() {
-		return "Match [id=" + id + ", description=" + description + ", match_date=" + match_date + ", match_time="
-				+ match_time + ", team_a=" + team_a + ", team_b=" + team_b + ", sport=" + sport + ", odds=" + odds
-				+ "]";
 	}
 }

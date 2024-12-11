@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.matchApp.model.Match;
 import com.example.matchApp.model.MatchOdd;
 import com.example.matchApp.service.MatchService;
-import com.example.matchApp.service.MatchServiceImpl;
 
 @Controller
 public class MatchController {
@@ -27,13 +25,13 @@ public class MatchController {
 	@RequestMapping("/add")
 	public String addMatch(Model model) {
 		model.addAttribute("match", new Match());
-		return "match/addMatch";
+		return "match/add-match";
 	}
 	
 	@RequestMapping("/updateMatch")
 	public String addMatch(Model model, @RequestParam("matchId") int matchId) {
 		model.addAttribute("match", matchService.getMatch(matchId));
-		return "match/addMatch";
+		return "match/add-match";
 	}
 	
 	@RequestMapping("/showMatches")
@@ -70,15 +68,10 @@ public class MatchController {
         return "redirect:/showOdds?matchId="+matchId;
     }
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping("/save")
     public String createMatch(@ModelAttribute("match") Match match, Model model) {
-
-        	System.out.println(match);
-        	matchService.saveMatch(match);
-
-            model.addAttribute("message", "Match added successfully!");
-
-            return "redirect:/showMatches";
+        matchService.saveMatch(match);
+        return "redirect:/showMatches";
     }
 	
 	@RequestMapping("/updateOdd")
@@ -91,7 +84,6 @@ public class MatchController {
 
 	@RequestMapping("/deleteOdd")
 	public String deleteOdd(@RequestParam("matchId") int matchId, @RequestParam("oddId") int oddId) {
-		
 		matchService.deleteOdd(oddId);
 		return "redirect:/showOdds?matchId="+matchId;
 	}
