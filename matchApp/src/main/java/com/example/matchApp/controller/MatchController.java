@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.matchApp.model.Match;
 import com.example.matchApp.model.MatchOdd;
@@ -69,7 +68,7 @@ public class MatchController {
     }
 	
 	@RequestMapping("/save")
-    public String createMatch(@ModelAttribute("match") Match match, Model model) {
+    public String createMatch(@ModelAttribute("match") Match match) {
         matchService.saveMatch(match);
         return "redirect:/showMatches";
     }
